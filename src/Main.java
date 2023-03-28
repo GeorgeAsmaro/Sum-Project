@@ -10,15 +10,19 @@ public class Main {
         while(!finished) {
             try {
                 Scanner input = new Scanner(System.in);
+
                 print("Enter 1 for calculating the sum of a range that you choose\n");
                 print("Enter 2 for calculating the sum of a range chosen with a random numbers generated");
                 int choice = input.nextInt();
+
                 switch (choice) {
                     case 1 -> {
                         print("Enter the starting number you would like to calculate the sum of the range");
                         int sumCalculationStart = input.nextInt();
+
                         print("Enter the ending number you would like to calculate the sum of the range");
                         int sumCalculationEnd = input.nextInt();
+
                         print(getTotalSum(sumCalculationStart, sumCalculationEnd));
                         finished = true;
                     }
@@ -76,24 +80,22 @@ public class Main {
         ArrayList<Integer> arrayList = new ArrayList<>();
         Random rand = new Random();
 
-
         for(int i = 0; i < numsToGenerate; i++) {
             arrayList.add(rand.nextInt(randRange2 - randRange1 + 1) + randRange1);
         }
 
         int size = arrayList.size();
 
-
         for (Integer integer : arrayList) {
             print(String.valueOf(integer));
             totalSum += integer;
         }
 
-
         int mostCommon = findMostCommonElement(arrayList);
         print("Most common element: " + findMostCommonElement(arrayList));
         print("Average number: " + findAverageDataProduced(size, totalSum));
         print("Percentage common num appeared: " + findPercentageOfData(mostCommon, arrayList, size) + "%");
+
         return totalSum;
     }
 
@@ -140,9 +142,7 @@ public class Main {
     public static void print(String message) {
         System.out.println(message);
     }
-
     public static void print(int message) {
         System.out.println(message);
     }
-
 }
