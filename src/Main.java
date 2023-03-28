@@ -36,9 +36,7 @@ public class Main {
                         System.out.println("Total Sum: " + randomNumSum(min, max, amount));
                         finished = true;
                     }
-                    default -> {
-                        System.out.println("Incorrect Input. Try Again\n");
-                    }
+                    default -> System.out.println("Incorrect Input. Try Again\n");
                 }
             }
             catch(InputMismatchException exception) {
@@ -84,9 +82,9 @@ public class Main {
         int size = arrayList.size();
 
 
-        for (int i = 0; i < arrayList.size(); i++) {
-            System.out.println(arrayList.get(i));
-            totalSum += arrayList.get(i);
+        for (Integer integer : arrayList) {
+            System.out.println(integer);
+            totalSum += integer;
         }
 
 
@@ -106,8 +104,8 @@ public class Main {
             int currentElement = list.get(i);
             int count = 0;
 
-            for (int j = 0; j < list.size(); j++) {
-                if (currentElement == list.get(j)) {
+            for (Integer integer : list) {
+                if (currentElement == integer) {
                     count++;
                 }
             }
@@ -123,21 +121,17 @@ public class Main {
     // What is the average of all data produced?
     public static double findAverageDataProduced(int length, int total){
         // Iterate through the list of data
-        double average = (double)total/length;
-        return average;
+        return (double)total/length;
     }
 
     // What % of the time did the most common value appear?
     public static double findPercentageOfData(int mostCommon, ArrayList<Integer> listToSearch, int length) {
         int amountInList = 0;
-        for(int i = 0; i < listToSearch.size(); i++) {
-            if(listToSearch.get(i) == mostCommon) {
+        for (Integer toSearch : listToSearch) {
+            if (toSearch == mostCommon) {
                 amountInList++;
             }
         }
-
-        double percentage = (double)amountInList/length*100;
-        return percentage;
+        return (double)amountInList/length*100;
     }
-
 }
