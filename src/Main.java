@@ -10,7 +10,6 @@ public class Main {
         while(!finished) {
             try {
                 Scanner input = new Scanner(System.in);
-
                 System.out.println("Enter 1 for calculating the sum of a range that you choose\n");
                 System.out.println("Enter 2 for calculating the sum of a range chosen with a random numbers generated");
                 int choice = input.nextInt();
@@ -24,13 +23,13 @@ public class Main {
                         finished = true;
                     }
                     case 2 -> {
-                        System.out.println("Enter min number to generate from");
+                        System.out.println("Enter min integer to generate from");
                         int min = input.nextInt();
 
-                        System.out.println("Enter max number to generate from");
+                        System.out.println("Enter max integer to generate from");
                         int max = input.nextInt();
 
-                        System.out.println("Enter the amount of numbers you would like to randomly generate");
+                        System.out.println("Enter the amount of integers you would like to randomly generate");
                         int amount = input.nextInt();
 
                         System.out.println("Total Sum: " + randomNumSum(min, max, amount));
