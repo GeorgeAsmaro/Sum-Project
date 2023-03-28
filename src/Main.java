@@ -41,6 +41,9 @@ public class Main {
             catch(InputMismatchException exception) {
                 System.out.println("Incorrect Input. Try again\n");
             }
+            catch(IndexOutOfBoundsException exception) {
+                System.out.println("Incorrect Inputs. Try again\n");
+            }
         }
     }
 
