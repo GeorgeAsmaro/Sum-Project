@@ -10,39 +10,39 @@ public class Main {
         while(!finished) {
             try {
                 Scanner input = new Scanner(System.in);
-                System.out.println("Enter 1 for calculating the sum of a range that you choose\n");
-                System.out.println("Enter 2 for calculating the sum of a range chosen with a random numbers generated");
+                print("Enter 1 for calculating the sum of a range that you choose\n");
+                print("Enter 2 for calculating the sum of a range chosen with a random numbers generated");
                 int choice = input.nextInt();
                 switch (choice) {
                     case 1 -> {
-                        System.out.println("Enter the starting number you would like to calculate the sum of the range");
+                        print("Enter the starting number you would like to calculate the sum of the range");
                         int sumCalculationStart = input.nextInt();
-                        System.out.println("Enter the ending number you would like to calculate the sum of the range");
+                        print("Enter the ending number you would like to calculate the sum of the range");
                         int sumCalculationEnd = input.nextInt();
-                        System.out.println(getTotalSum(sumCalculationStart, sumCalculationEnd));
+                        print(getTotalSum(sumCalculationStart, sumCalculationEnd));
                         finished = true;
                     }
                     case 2 -> {
-                        System.out.println("Enter min integer to generate from");
+                        print("Enter min integer to generate from");
                         int min = input.nextInt();
 
-                        System.out.println("Enter max integer to generate from");
+                        print("Enter max integer to generate from");
                         int max = input.nextInt();
 
-                        System.out.println("Enter the amount of integers you would like to randomly generate");
+                        print("Enter the amount of integers you would like to randomly generate");
                         int amount = input.nextInt();
 
-                        System.out.println("Total Sum: " + randomNumSum(min, max, amount));
+                        print("Total Sum: " + randomNumSum(min, max, amount));
                         finished = true;
                     }
-                    default -> System.out.println("Incorrect Input. Try Again\n");
+                    default -> print("Incorrect Input. Try Again\n");
                 }
             }
             catch(InputMismatchException exception) {
-                System.out.println("Incorrect Input. Try again\n");
+                print("Incorrect Input. Try again\n");
             }
             catch(IndexOutOfBoundsException exception) {
-                System.out.println("Incorrect Inputs. Try again\n");
+                print("You have to generate at least one number. Try again\n");
             }
         }
     }
@@ -85,15 +85,15 @@ public class Main {
 
 
         for (Integer integer : arrayList) {
-            System.out.println(integer);
+            print(String.valueOf(integer));
             totalSum += integer;
         }
 
 
         int mostCommon = findMostCommonElement(arrayList);
-        System.out.println("Most common element: " + findMostCommonElement(arrayList));
-        System.out.println("Average number: " + findAverageDataProduced(size, totalSum));
-        System.out.println("Percentage common num appeared: " + findPercentageOfData(mostCommon, arrayList, size) + "%");
+        print("Most common element: " + findMostCommonElement(arrayList));
+        print("Average number: " + findAverageDataProduced(size, totalSum));
+        print("Percentage common num appeared: " + findPercentageOfData(mostCommon, arrayList, size) + "%");
         return totalSum;
     }
 
@@ -136,4 +136,13 @@ public class Main {
         }
         return (double)amountInList/length*100;
     }
+
+    public static void print(String message) {
+        System.out.println(message);
+    }
+
+    public static void print(int message) {
+        System.out.println(message);
+    }
+
 }
