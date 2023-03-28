@@ -1,41 +1,61 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
 
-        System.out.println("Enter 1 for calculating the sum of a range that you choose\n");
-        System.out.println("Enter 2 for calculating the sum of a range chosen with a random numbers generated");
-        int choice = input.nextInt();
-        switch (choice) {
-            case 1 -> {
-                System.out.println("Enter the starting number you would like to calculate the sum of the range");
-                int sumCalculationStart = input.nextInt();
-                System.out.println("Enter the ending number you would like to calculate the sum of the range");
-                int sumCalculationEnd = input.nextInt();
-                System.out.println(getTotalSum(sumCalculationStart,sumCalculationEnd));
+        boolean finished = false;
+        while(!finished) {
+            try {
+                Scanner input = new Scanner(System.in);
+
+                System.out.println("Enter 1 for calculating the sum of a range that you choose\n");
+                System.out.println("Enter 2 for calculating the sum of a range chosen with a random numbers generated");
+                int choice = input.nextInt();
+                switch (choice) {
+                    case 1 -> {
+                        System.out.println("Enter the starting number you would like to calculate the sum of the range");
+                        int sumCalculationStart = input.nextInt();
+                        System.out.println("Enter the ending number you would like to calculate the sum of the range");
+                        int sumCalculationEnd = input.nextInt();
+                        System.out.println(getTotalSum(sumCalculationStart, sumCalculationEnd));
+                        finished = true;
+                    }
+                    case 2 -> {
+                        System.out.println("Enter min number to generate from");
+                        int min = input.nextInt();
+
+                        System.out.println("Enter max number to generate from");
+                        int max = input.nextInt();
+
+                        System.out.println("Enter the amount of numbers you would like to randomly generate");
+                        int amount = input.nextInt();
+
+                        System.out.println("Total Sum: " + randomNumSum(min, max, amount));
+                        finished = true;
+                    }
+                    default -> {
+                        System.out.println("Incorrect Input. Try Again\n");
+                    }
+                }
             }
-            case 2 -> {
-                System.out.println("Enter min number to generate from");
-                int min = input.nextInt();
-
-                System.out.println("Enter max number to generate from");
-                int max = input.nextInt();
-
-                System.out.println("Enter the amount of numbers you would like to randomly generate");
-                int amount = input.nextInt();
-
-                System.out.println("Total Sum: " + randomNumSum(min,max,amount));
+            catch(InputMismatchException exception) {
+                System.out.println("Incorrect Input. Try again\n");
             }
-            default -> { System.out.println("incorrect input"); }
         }
-
     }
 
     public static int getTotalSum(int rangeStart, int rangeEnd) {
         int totalSum = 0;
+
+        if(rangeEnd < rangeStart) {
+            int tempRand2 = rangeEnd;
+            rangeEnd = rangeStart;
+            rangeStart = tempRand2;
+        }
+
         int start = rangeStart;
         for(int i = rangeStart; i <= rangeEnd; i++) {
                totalSum += start;
@@ -46,6 +66,12 @@ public class Main {
 
     public static int randomNumSum(int randRange1, int randRange2, int numsToGenerate) {
         int totalSum = 0;
+
+        if(randRange2 < randRange1) {
+            int tempRand2 = randRange2;
+            randRange2 = randRange1;
+            randRange1 = tempRand2;
+        }
 
         ArrayList<Integer> arrayList = new ArrayList<>();
         Random rand = new Random();
