@@ -93,7 +93,7 @@ public class Main {
         int mostCommon = findMostCommonElement(arrayList);
         System.out.println("Most common element: " + findMostCommonElement(arrayList));
         System.out.println("Average number: " + findAverageDataProduced(size, totalSum));
-        System.out.println("Percentage common num appeared: " + findPercentageOfData(mostCommon, arrayList, size));
+        System.out.println("Percentage common num appeared: " + findPercentageOfData(mostCommon, arrayList, size) + "%");
         return totalSum;
     }
 
