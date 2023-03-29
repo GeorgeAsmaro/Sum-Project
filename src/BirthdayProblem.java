@@ -1,33 +1,53 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class BirthdayProblem {
 
-    static int people = 2;
+    static int people = 366;
+    static int numTrue = 0;
+    static int numExperiments = 0;
     static boolean sameBirthday = false;
 
     public static void main(String[] args) {
         Random rand = new Random();
+        Scanner scan = new Scanner(System.in);
         ArrayList<Integer> arrayList = new ArrayList<>();
 
-        int index = 0;
+        System.out.println("Enter number of experiments to be done");
+        int numExpTBD = scan.nextInt();
 
-        for(int i = 0; i < people; i++) {
-            int test = rand.nextInt(365);
-            arrayList.add(test);
-        }
-        while(!sameBirthday) {
-            for(int i = 0; i < arrayList.size(); i++) {
-                if (arrayList.get(index).equals(arrayList.get(i))) {
-                    sameBirthday = true;
-                    break;
+        for(int i = 0; i < numExpTBD; i++) {
+            numExperiments++;
+            int index = 0;
+
+            for(int h = 0; h < people; h++) {
+                int test = rand.nextInt(365);
+                arrayList.add(test);
+            }
+
+            try {
+                while(!sameBirthday) {
+                    for(int j = 0; j < arrayList.size(); j++) {
+                        if (arrayList.get(index).equals(arrayList.get(j)) && index != j) {
+                            sameBirthday = true;
+                            numTrue++;
+                            break;
+                        }
+                    }
+                    index++;
                 }
             }
-            index++;
+            catch (IndexOutOfBoundsException exception) {
+                System.out.println("No duplicates");
+            }
+
+            System.out.println(sameBirthday);
         }
 
-        System.out.println(sameBirthday);
-        
+        System.out.println((double)numTrue/numExperiments*100);
+
+
 
     }
 }
