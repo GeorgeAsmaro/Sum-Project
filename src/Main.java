@@ -36,7 +36,10 @@ public class Main {
                         print("Enter the amount of integers you would like to randomly generate");
                         int amount = input.nextInt();
 
-                        print("Total Sum: " + randomNumSum(min, max, amount));
+                        print("How many times would you like to run this experiment?");
+                        int experimentQuantity = input.nextInt();
+
+                        randomNumSum(min, max, amount, experimentQuantity);
                         finished = true;
                     }
                     default -> print("Incorrect Input. Try Again\n");
@@ -68,33 +71,56 @@ public class Main {
         return totalSum;
     }
 
-    public static int randomNumSum(int randRange1, int randRange2, int numsToGenerate) {
+    // What is the average of all data produced?
+    public static double findAverageDataProduced(int length, int total){
+        // Iterate through the list of data
+        return (double)total/length;
+    }
+
+    // Fix this
+    public static int randomNumSum(int randRange1, int randRange2, int numsToGenerate, int numTimesToRepeat) {
         int totalSum = 0;
+        ArrayList<Double> list = new ArrayList<>();
 
-        if(randRange2 < randRange1) {
-            int tempRand2 = randRange2;
-            randRange2 = randRange1;
-            randRange1 = tempRand2;
+        for(int i = 0; i < numTimesToRepeat; i++) {
+            totalSum = 0;
+            if(randRange2 < randRange1) {
+                int tempRand2 = randRange2;
+                randRange2 = randRange1;
+                randRange1 = tempRand2;
+            }
+
+            ArrayList<Integer> arrayList = new ArrayList<>();
+            Random rand = new Random();
+
+            for(int j = 0; j < numsToGenerate; j++) {
+                arrayList.add(rand.nextInt(randRange2 - randRange1 + 1) + randRange1);
+            }
+
+            int size = arrayList.size();
+            
+            for (Integer integer : arrayList) {
+                //print(String.valueOf(integer));
+                totalSum += integer;
+            }
+
+            int mostCommon = findMostCommonElement(arrayList);
+            //print("Most common element: " + findMostCommonElement(arrayList));
+            print("Average number: " + findAverageDataProduced(size, totalSum));
+            list.add(findAverageDataProduced(size,totalSum));
+            //print("Percentage common num appeared: " + findPercentageOfData(mostCommon, arrayList, size) + "%");
+
         }
 
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        Random rand = new Random();
+        int totalOverall = 0;
 
-        for(int i = 0; i < numsToGenerate; i++) {
-            arrayList.add(rand.nextInt(randRange2 - randRange1 + 1) + randRange1);
+        for(int i = 0; i < list.size(); i++) {
+            totalOverall += list.get(i);
         }
 
-        int size = arrayList.size();
+        double totalAverage = (double)totalOverall/numTimesToRepeat;
 
-        for (Integer integer : arrayList) {
-            print(String.valueOf(integer));
-            totalSum += integer;
-        }
-
-        int mostCommon = findMostCommonElement(arrayList);
-        print("Most common element: " + findMostCommonElement(arrayList));
-        print("Average number: " + findAverageDataProduced(size, totalSum));
-        print("Percentage common num appeared: " + findPercentageOfData(mostCommon, arrayList, size) + "%");
+        print("Total Average with " + numTimesToRepeat + " experiments done is: " + totalAverage);
 
         return totalSum;
     }
@@ -122,11 +148,6 @@ public class Main {
         return mostCommonElement;
     }
 
-    // What is the average of all data produced?
-    public static double findAverageDataProduced(int length, int total){
-        // Iterate through the list of data
-        return (double)total/length;
-    }
 
     // What % of the time did the most common value appear?
     public static double findPercentageOfData(int mostCommon, ArrayList<Integer> listToSearch, int length) {
@@ -145,4 +166,6 @@ public class Main {
     public static void print(int message) {
         System.out.println(message);
     }
+
+
 }
