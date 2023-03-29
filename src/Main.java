@@ -98,7 +98,7 @@ public class Main {
             }
 
             int size = arrayList.size();
-            
+
             for (Integer integer : arrayList) {
                 //print(String.valueOf(integer));
                 totalSum += integer;
@@ -169,3 +169,4 @@ public class Main {
 
 
 }
+
