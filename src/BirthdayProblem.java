@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BirthdayProblem {
 
-    static int people = 366;
+    static int people;
     static int numTrue = 0;
     static int numExperiments = 0;
     static boolean sameBirthday = false;
@@ -14,13 +14,16 @@ public class BirthdayProblem {
         Scanner scan = new Scanner(System.in);
         ArrayList<Integer> arrayList = new ArrayList<>();
 
+        System.out.println("Enter the number of people in the room");
+        people = scan.nextInt();
+
         System.out.println("Enter number of experiments to be done");
         int numExpTBD = scan.nextInt();
 
         for(int i = 0; i < numExpTBD; i++) {
             numExperiments++;
             int index = 0;
-
+            sameBirthday = false;
             for(int h = 0; h < people; h++) {
                 int test = rand.nextInt(365);
                 arrayList.add(test);
@@ -38,16 +41,12 @@ public class BirthdayProblem {
                     index++;
                 }
             }
-            catch (IndexOutOfBoundsException exception) {
-                System.out.println("No duplicates");
-            }
-
+            catch (IndexOutOfBoundsException ignored) {}
             System.out.println(sameBirthday);
+            arrayList.clear();
         }
-
-        System.out.println((double)numTrue/numExperiments*100);
-
-
+        double percentage = (double)numTrue / numExpTBD * 100.0;
+        System.out.println("Chance for at least 1 person to share the same birthday: " + percentage + "%");
 
     }
 }
