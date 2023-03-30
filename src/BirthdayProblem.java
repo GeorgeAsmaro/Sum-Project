@@ -62,12 +62,7 @@ public class BirthdayProblem {
                 System.out.println("2. No");
                 int retry = scan.nextInt();
 
-                if(retry == 1) {
-                    finished = false;
-                }
-                else {
-                    finished = true;
-                }
+                finished = retry != 1;
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Enter an integer");
                 scan.nextLine();
