@@ -13,7 +13,7 @@ public class MontyHall {
     }
 
     public static void dontSwitch() {
-        System.out.println("Case 1: You choose an intial box and you don't change your answer.\nEnter number of generations");
+        System.out.println("Case 1: You choose an initial box and you don't change your answer.\nEnter number of generations");
         int numGenerations = Math.abs(input.nextInt());
 
         int correctBoxChosen = 0;
