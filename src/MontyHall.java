@@ -9,14 +9,11 @@ public class MontyHall {
 
     public static void main(String[] args) {
         dontSwitch();
-
         switchBox();
-
     }
 
     public static void dontSwitch() {
-
-        System.out.println("Enter number of generations");
+        System.out.println("Case 1: You choose an intial box and you don't change your answer.\nEnter number of generations");
         int numGenerations = input.nextInt();
 
         int correctBoxChosen = 0;
@@ -52,18 +49,16 @@ public class MontyHall {
             else {
                 incorrectBoxChosen++;
             }
-
             list.clear();
         }
 
         int total = correctBoxChosen + incorrectBoxChosen;
         double percentage = (double) correctBoxChosen / total * 100.0;
         System.out.println("Percentage of success without switching the box chosen: " + percentage + "%");
-
     }
 
     public static void switchBox() {
-        System.out.println("Enter number of generations");
+        System.out.println("Case 2: You choose an initial box but change your answer once one is removed.\nEnter number of generations");
         int numGenerations = input.nextInt();
 
         int correctBoxChosen = 0;
@@ -106,7 +101,6 @@ public class MontyHall {
                     incorrectBoxChosen++;
                 }
             }
-
             list.clear();
         }
 
