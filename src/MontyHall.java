@@ -36,7 +36,7 @@ public class MontyHall {
         }
         int total = correctBoxChosen + incorrectBoxChosen;
         double percentage = (double) correctBoxChosen / total * 100.0;
-        System.out.println("Percentage of success without switching the box chosen: " + percentage + "%");
+        System.out.println("Percentage of success without switching the box chosen: " + percentage + "%\n");
     }
 
     public static void switchBox() {
