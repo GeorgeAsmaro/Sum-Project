@@ -25,9 +25,11 @@ public class BirthdayProblem {
 
                 System.out.println("Enter the number of people in the room");
                 people = scan.nextInt();
+                people = Math.abs(people);
 
                 System.out.println("Enter number of experiments to be done");
                 numExpTBD = scan.nextInt();
+                numExpTBD = Math.abs(numExpTBD);
 
                 for (int i = 0; i < numExpTBD; i++) {
                     numExperiments++;
@@ -67,7 +69,6 @@ public class BirthdayProblem {
                 System.out.println("Invalid input. Enter an integer");
                 scan.nextLine();
             }
-
         }
     }
 }
