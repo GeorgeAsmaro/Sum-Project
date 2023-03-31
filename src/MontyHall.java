@@ -8,80 +8,110 @@ public class MontyHall {
     static Random rand = new Random();
 
     public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
+        dontSwitch();
 
-        list.add("1. Box 1");
-        list.add("2. Box 2");
-        list.add("3. Box 3");
+        switchBox();
 
-        boolean box1 = false;
-        boolean box2 = false;
-        boolean box3 = false;
-
-        int timesRan = 0;
-        int correctBoxChosen = 0;
-        int incorrectBoxChosen = 0;
-
-
-
-        if(rand.nextInt(3) + 1 == 1) {
-            box1 = true;
-        }
-        else if(rand.nextInt(3) + 1 == 2) {
-            box2 = true;
-        }
-        else {box3 = true;}
-
-        for (String string : list) {
-            System.out.println(string);
-        }
-
-        System.out.println("2 of these boxes are empty, and 1 has a prize. Pick one that you think has the prize");
-
-        int boxChosen = input.nextInt();
-
-            if(boxChosen == 1 && !box3) {
-                list.remove(2);
-                System.out.println("You have chosen box 1. Box 3 has been removed as it is empty. Would you like to switch your box?");
-            }
-
-            if(boxChosen == 1 && !box2) {
-                list.remove(1);
-                System.out.println("You have chosen box 1. Box 2 has been removed as it is empty. Would you like to switch your box?");
-            }
-
-            System.out.println("1. Yes");
-            System.out.println("2. No");
-
-            int switchBox = input.nextInt();
-
-            if(switchBox == 1) {
-                if(box2) {
-                    System.out.println("You have switched and chosen the correct box");
-                    correctBoxChosen++;
-                }
-                else {
-                    System.out.println("You have switched and chosen the wrong box");
-                    incorrectBoxChosen++;
-                }
-            }
-            if(switchBox == 2) {
-                if(box1) {
-                    System.out.println("You chose to keep your box, which was the correct box");
-                    correctBoxChosen++;
-                }
-                else {
-                    System.out.println("You chsoe to keep your box, which was the incorrect box");
-                    incorrectBoxChosen++;
-                }
-            }
     }
 
     public static void dontSwitch() {
 
+        System.out.println("Enter number of generations");
+        int numGenerations = input.nextInt();
+
+        int correctBoxChosen = 0;
+        int incorrectBoxChosen = 0;
+
+        for(int i = 0; i < numGenerations; i++) {
+            ArrayList<String> list = new ArrayList<>();
+
+            list.add("1. Box 1");
+            list.add("2. Box 2");
+            list.add("3. Box 3");
+
+            boolean box1 = false;
+            boolean box2 = false;
+            boolean box3 = false;
+
+            int randBox = rand.nextInt(3)+1;
+
+            if(randBox == 1) {box1 = true;}
+            if(randBox == 2) {box2 = true;}
+            if(randBox == 3) {box3 = true;}
+
+            if(!box3) {
+                list.remove(2);
+            }
+            if(!box2) {
+                list.remove(1);
+            }
+
+            if(box1) {
+                correctBoxChosen++;
+            }
+            else {
+                incorrectBoxChosen++;
+            }
+
+            list.clear();
+        }
+
+        int total = correctBoxChosen + incorrectBoxChosen;
+        double percentage = (double) correctBoxChosen / total * 100.0;
+        System.out.println("Percentage of success without switching the box chosen: " + percentage + "%");
+
     }
 
     public static void switchBox() {
+        System.out.println("Enter number of generations");
+        int numGenerations = input.nextInt();
 
+        int correctBoxChosen = 0;
+        int incorrectBoxChosen = 0;
+
+        for(int i = 0; i < numGenerations; i++) {
+            ArrayList<String> list = new ArrayList<>();
+
+            list.add("1. Box 1");
+            list.add("2. Box 2");
+            list.add("3. Box 3");
+
+            boolean box1 = false;
+            boolean box2 = false;
+            boolean box3 = false;
+
+            int randBox = rand.nextInt(3)+1;
+
+            if(randBox == 1) {box1 = true;}
+            if(randBox == 2) {box2 = true;}
+            if(randBox == 3) {box3 = true;}
+
+            if(!box3) {
+                list.remove(2);
+
+                if(box2) {
+                    correctBoxChosen++;
+                }
+                else {
+                    incorrectBoxChosen++;
+                }
+            }
+            if(!box2) {
+                list.remove(1);
+
+                if(box3) {
+                    correctBoxChosen++;
+                }
+                else {
+                    incorrectBoxChosen++;
+                }
+            }
+
+            list.clear();
+        }
+
+        int total = correctBoxChosen + incorrectBoxChosen;
+        double percentage = (double) correctBoxChosen / total * 100.0;
+        System.out.println("Percentage of success switching the box after one is removed: " + percentage + "%");
     }
 }
