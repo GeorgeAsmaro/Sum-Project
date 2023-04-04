@@ -6,7 +6,7 @@ public class OptimalStopping {
 
     int maxAttempts;
     int rating;
-
+    boolean accept;
     static Random rand = new Random();
     static Scanner input = new Scanner(System.in);
 
